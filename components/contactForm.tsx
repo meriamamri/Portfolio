@@ -76,7 +76,11 @@ const ContactForm = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your name" {...field} />
+                      <Input
+                        placeholder="Your name"
+                        {...field}
+                        className="bg-transparent"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -89,7 +93,11 @@ const ContactForm = () => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your email" {...field} />
+                      <Input
+                        placeholder="Your email"
+                        {...field}
+                        className="bg-transparent"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,7 +110,11 @@ const ContactForm = () => {
                   <FormItem>
                     <FormLabel>Subject</FormLabel>
                     <FormControl>
-                      <Input placeholder="Subject" {...field} />
+                      <Input
+                        placeholder="Subject"
+                        {...field}
+                        className="bg-transparent"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -119,6 +131,7 @@ const ContactForm = () => {
                         placeholder="Your message"
                         rows={5}
                         {...field}
+                        className="bg-transparent"
                       />
                     </FormControl>
                     <FormMessage />
