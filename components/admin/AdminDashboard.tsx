@@ -10,9 +10,12 @@ import { toast } from 'sonner';
 import ProjectForm from './ProjectForm';
 import SkillForm from './SkillForm';
 import AboutForm from './AboutForm';
+import ExperienceForm from './ExperienceForm';
+import EducationForm from './EducationForm';
 import { projectsData } from '@/Data/projectsData';
 import { skillsData } from '@/Data/skillData';
 import { aboutData } from '@/Data/aboutData';
+import { experiences } from '@/Data/experiences';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -20,9 +23,13 @@ export default function AdminDashboard() {
   const [editingProject, setEditingProject] = useState<any>(null);
   const [editingSkill, setEditingSkill] = useState<any>(null);
   const [editingAbout, setEditingAbout] = useState<any>(null);
+  const [editingExperience, setEditingExperience] = useState<any>(null);
+  const [editingEducation, setEditingEducation] = useState<any>(null);
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showAboutForm, setShowAboutForm] = useState(false);
+  const [showExperienceForm, setShowExperienceForm] = useState(false);
+  const [showEducationForm, setShowEducationForm] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -48,10 +55,12 @@ export default function AdminDashboard() {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="projects">Projects</TabsTrigger>
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="about">About</TabsTrigger>
+            <TabsTrigger value="experience">Experience</TabsTrigger>
+            <TabsTrigger value="education">Education</TabsTrigger>
           </TabsList>
 
           <TabsContent value="projects" className="space-y-6">
@@ -210,6 +219,122 @@ export default function AdminDashboard() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="experience" className="space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold">Manage Work Experience</h2>
+              <Button onClick={() => setShowExperienceForm(true)}>
+                <Plus className="w-4 h-4 mr-2" />
+                Add Experience
+              </Button>
+            </div>
+
+            {showExperienceForm && (
+              <ExperienceForm
+                experience={editingExperience}
+                onClose={() => {
+                  setShowExperienceForm(false);
+                  setEditingExperience(null);
+                }}
+                onSave={() => {
+                  setShowExperienceForm(false);
+                  setEditingExperience(null);
+                  toast.success('Experience saved successfully!');
+                }}
+              />
+            )}
+
+            <div className="space-y-4">
+              {experiences.map((exp, index) => (
+                <Card key={index}>
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h4 className="font-medium">{exp.title}</h4>
+                        <p className="text-sm text-muted-foreground">{exp.company}</p>
+                        <p className="text-xs text-muted-foreground">{exp.period}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            setEditingExperience(exp);
+                            setShowExperienceForm(true);
+                          }}
+                        >
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                        <Button size="sm" variant="destructive">
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                    <p className="text-sm">{exp.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="education" className="space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold">Manage Education</h2>
+              <Button onClick={() => setShowEducationForm(true)}>
+                <Plus className="w-4 h-4 mr-2" />
+                Add Education
+              </Button>
+            </div>
+
+            {showEducationForm && (
+              <EducationForm
+                education={editingEducation}
+                onClose={() => {
+                  setShowEducationForm(false);
+                  setEditingEducation(null);
+                }}
+                onSave={() => {
+                  setShowEducationForm(false);
+                  setEditingEducation(null);
+                  toast.success('Education saved successfully!');
+                }}
+              />
+            )}
+
+            <div className="space-y-4">
+              <Card>
+                <CardContent className="p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="font-medium">BSc in Computer Science</h4>
+                      <p className="text-sm text-muted-foreground">New York University</p>
+                      <p className="text-xs text-muted-foreground">2014 - 2018</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          setEditingEducation({
+                            degree: 'BSc in Computer Science',
+                            institution: 'New York University',
+                            period: '2014 - 2018',
+                            description: ''
+                          });
+                          setShowEducationForm(true);
+                        }}
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button size="sm" variant="destructive">
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </TabsContent>
         </Tabs>
