@@ -720,7 +720,7 @@
     "@radix-ui/react-use-callback-ref" "1.1.1"
     "@radix-ui/react-use-layout-effect" "1.1.1"
 
-"@radix-ui/react-select@2.2.5":
+"@radix-ui/react-select@^2.2.5", "@radix-ui/react-select@2.2.5":
   version "2.2.5"
   resolved "https://registry.npmjs.org/@radix-ui/react-select/-/react-select-2.2.5.tgz"
   integrity sha512-HnMTdXEVuuyzx63ME0ut4+sEMYW6oouHWNGUZc7ddvUWIcfCva/AMoqEW/3wnEllriMWBa0RHspCYnfCWJQYmA==
@@ -791,7 +791,7 @@
     "@radix-ui/react-use-previous" "1.1.1"
     "@radix-ui/react-use-size" "1.1.1"
 
-"@radix-ui/react-tabs@1.1.12":
+"@radix-ui/react-tabs@^1.1.12", "@radix-ui/react-tabs@1.1.12":
   version "1.1.12"
   resolved "https://registry.npmjs.org/@radix-ui/react-tabs/-/react-tabs-1.1.12.tgz"
   integrity sha512-GTVAlRVrQrSw3cEARM0nAx73ixrWDPNZAruETn3oHCNP6SbZ/hNxdxp+u7VkIEv3/sFoLq1PfcHrl7Pnp0CDpw==
